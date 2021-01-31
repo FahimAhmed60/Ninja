@@ -13,7 +13,18 @@ body{
     background-attachment: scroll;
     background-size: cover;
 }
-
+.btn-minus{
+    padding: .2rem;
+    border-radius: 1rem;
+    font-size: .5rem;
+    color: red;
+}
+.btn-plus{
+    padding: .2rem;
+    border-radius: 1rem;
+    font-size: .5rem;
+    color: green;
+}
 nav{
     height: 50px;
     width: 100%;
