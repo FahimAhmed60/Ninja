@@ -98,9 +98,9 @@
                     </div>
                 </div>
             </div>
-            <button onclick="alert('Congratulations! Have Fun Journey')" class="btn-style">Book Now</button>
+            <button onclick="myButtonMessage()" class="btn-style">Book Now</button>
+            <p id="demo"></p>
         </div>
-
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
@@ -110,7 +110,6 @@
         function handleTicket(ticket, isIncrease){
             const ticketCountInput = document.getElementById(ticket + '-count');
             const ticketCount = parseInt(ticketCountInput.value);
-            // const newTicketCount = ticketCount - 1;
             let newTicketCount = ticketCount;
             if(isIncrease == true){
                 newTicketCount = ticketCount + 1;
@@ -123,7 +122,6 @@
                 return;
             }
             ticketCountInput.value = newTicketCount;
-            // const priceTotal = '('+ newTicketCount * 150+')';
             let ticketTotal = 0;
             if(ticket == 'ticket'){
                 ticketTotal = '(' +newTicketCount * 150+')';
@@ -134,18 +132,34 @@
             document.getElementById(ticket + '-price').innerText = "Your Ticket Price is " + ticketTotal;
             calculateTotal();
         }
-        function calculateTotal(){
-            const firstClassInput = document.getElementById('ticket-count');
-            const firstTicketCount = parseInt(firstClassInput.value);
-            const economyInput = document.getElementById('economy-count');
-            const economyTicketCount = parseInt(economyInput.value);
+        function calculateTotal(){  
+            const firstTicketCount = getInputValue('ticket');
+            const economyTicketCount = getInputValue('economy');
+
             const totalPrice = firstTicketCount * 150 + economyTicketCount * 100;
             document.getElementById('total-price').innerText = '$' + totalPrice;
+
             const tax = Math.round(totalPrice * 0.1);
             document.getElementById('tax-amount').innerText = `$` + tax;
 
             const grandTotal = totalPrice + tax;
             document.getElementById('final-price').innerText = `$` + grandTotal;
+        }
+
+        function getInputValue(ticket){
+            const  ticketCountInput = document.getElementById(ticket+'-count');
+            const ticketCount = parseInt(ticketCountInput.value); 
+            return ticketCount;
+        }
+        // -------- BUTTON -------------------------------
+        function myButtonMessage() {
+                var txt;
+                if (confirm("Confirm your booking?")) {
+                    txt = "Booking successful! Have safe flight! 👋";
+                } else {
+                    txt = "You Canceled your booking!";
+                }
+                document.getElementById("demo").innerHTML = txt;
         }
     </script>
     <!--Thank You-->
